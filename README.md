@@ -17,17 +17,20 @@ So, now users can simply create html files using C++ without actually writing th
 3.Create a .cpp file in the same folder with any name.
 
 4.Now include this header in this .cpp file(see the sample code below)
-        #include<iostream>
-        #include"chtml.h"
-        using namespace std;
-        int main()
-        {
-        html obj;
-        obj.create_file("sample");
-        obj.add_title("Welcome");
-        return 0;
-        }
+       
+       #include<iostream>
+       #include"chtml.h"
+       using namespace std;
+       int main()
+       {
+       html obj;
+       obj.create_file("sample");
+       obj.add_title("Welcome");
+       return 0;
+       }
 
-5.As shown above create a file and see the list of available functions.
+5.View the test.cpp file in test folder for further clarity.
 
 6.A html file will be automatically created in your folder.Open it with any web browser.
+
+7.For list of functions available view the api.txt in api folder.
