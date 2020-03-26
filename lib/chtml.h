@@ -22,7 +22,7 @@ class html{
 					SEEKP;
 					fout<<"<title>"<<title_content<<"</title>"<<"\n</body>\n</html>";
 				}
-	void add_link(string linkurl,string linkname)
+				void add_link(string linkurl,string linkname)
 				{
 					CHECK;
 					SEEKP;
@@ -75,4 +75,21 @@ class html{
 					}
 					fout<<"</table>"<<"\n</body>\n</html>";
 				}
+				void add_heading(string heading_content,int heading_size=1)
+				{
+					CHECK;
+					if(heading_size>=1&&heading_size<=6)
+					{	
+						SEEKP;
+						fout<<"<h"<<heading_size<<">"<<heading_content<<"</h"<<heading_size<<">"<<"\n</body>\n</html>";
+					}
+					else
+						throw "Please choose heading tag size from one of{1,2,3,4,5,6}";
+				}
+				void add_paragraph(string para,string attributes="color:black;font:Arial;")
+				{
+					CHECK;
+					SEEKP;
+					fout<<"<p style=\""<<attributes<<"\">"<<para<<"</p>"<<"\n</body>\n</html>";
+				}	
 };
