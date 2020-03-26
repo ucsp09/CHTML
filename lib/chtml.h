@@ -6,7 +6,7 @@
 #define CHECK if(!fout.is_open())throw "Please create a file first using create_file()"
 using namespace std;
 class html{
-	private:	string filename;
+	private:		string filename;
 				long pos;
 				ofstream fout;
 	public:		void create_file(string user_filename)
