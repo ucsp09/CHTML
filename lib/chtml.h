@@ -6,7 +6,7 @@
 #define CHECK if(!fout.is_open())throw "Please create a file first using create_file()"
 using namespace std;
 class html{
-	private:		string filename;
+	private:	string filename;
 				long pos;
 				ofstream fout;
 	public:		void create_file(string user_filename)
@@ -21,6 +21,23 @@ class html{
 					CHECK;
 					SEEKP;
 					fout<<"<title>"<<title_content<<"</title>"<<"\n</body>\n</html>";
+				}
+				void add_heading(string heading_content,int heading_size=1,string style="color:black;font:Arial;")
+				{
+					CHECK;
+					if(heading_size>=1&&heading_size<=6)
+					{	
+						SEEKP;
+						fout<<"<h"<<heading_size<<" "<<"style=\""<<style<<"\">"<<heading_content<<"</h"<<heading_size<<">"<<"\n</body>\n</html>";
+					}
+					else
+						throw "Please choose heading tag size from one of{1,2,3,4,5,6}";
+				}
+				void add_paragraph(string para,string style="color:black;font:Arial;")
+				{
+					CHECK;
+					SEEKP;
+					fout<<"<p style=\""<<style<<"\">"<<para<<"</p>"<<"\n</body>\n</html>";
 				}
 				void add_link(string linkurl,string linkname)
 				{
@@ -56,40 +73,23 @@ class html{
 					fout<<"<img src=\""<<imageurl<<"\""<<" "<<"alt=\""<<alt<<"\""<<" "<<"width=\""<<width<<"\""<<" "<<"height=\""<<height<<"\">"<<"\n</body>\n</html>";
 				}
 				template<size_t ROW,size_t COL>
-				void add_table(string (&table)[ROW][COL])
+				void add_table(string (&table)[ROW][COL],string style="border:1px solid black;border-collapse:collapse;")
 				{
 					CHECK;
 					SEEKP;
-					fout<<"<table>\n";
+					fout<<"<table style=\""<<style<<"\">\n";
 					for(int i=0;i<ROW;i++)
 					{
 						fout<<"<tr>\n";
 						for(int j=0;j<COL;j++)
 						{
 							if(i==0)
-								fout<<"<th>"<<table[i][j]<<"</th>\n";
+								fout<<"<th style=\""<<style<<"\">"<<table[i][j]<<"</th>\n";
 							else
-								fout<<"<td>"<<table[i][j]<<"</td>\n";
+								fout<<"<td style=\""<<style<<"\">"<<table[i][j]<<"</th>\n";
 						}
 						fout<<"</tr>\n";
 					}
 					fout<<"</table>"<<"\n</body>\n</html>";
 				}
-				void add_heading(string heading_content,int heading_size=1)
-				{
-					CHECK;
-					if(heading_size>=1&&heading_size<=6)
-					{	
-						SEEKP;
-						fout<<"<h"<<heading_size<<">"<<heading_content<<"</h"<<heading_size<<">"<<"\n</body>\n</html>";
-					}
-					else
-						throw "Please choose heading tag size from one of{1,2,3,4,5,6}";
-				}
-				void add_paragraph(string para,string attributes="color:black;font:Arial;")
-				{
-					CHECK;
-					SEEKP;
-					fout<<"<p style=\""<<attributes<<"\">"<<para<<"</p>"<<"\n</body>\n</html>";
-				}	
 };
