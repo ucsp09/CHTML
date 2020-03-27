@@ -23,9 +23,16 @@ So, now users can simply create html files using C++ without actually writing th
        using namespace std;
        int main()
        {
+       try{
        html obj;
-       obj.create_file("sample");
-       obj.add_title("Welcome");
+       obj.add_title("WELCOME");
+       string cars[]={"Ferrari","BMW","Lamborgini"};
+       obj.add_list(cars);
+       }
+       catch(const char* msg){
+       cout<<msg<<endl;
+       }
+      
        return 0;
        }
 
