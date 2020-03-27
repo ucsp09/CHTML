@@ -5,7 +5,13 @@ class html{
 	private:	string filename;
 				long pos;
 				ofstream fout;
-	public:		void create_file(string user_filename)
+	public:		html()
+				{
+					filename="sample.html";
+					OPEN;
+					INIT;
+				}
+				html(string user_filename)
 				{
 					user_filename+=".html";
 					filename=user_filename;
@@ -14,13 +20,11 @@ class html{
 				}
 				void add_title(string title_content)
 				{	
-					CHECK;
 					GOTOH;
 					fout<<"<title>"<<title_content<<"</title>"<<"\n</head>\n<body>\n</body>\n</html>";
 				}
 				void add_heading(string heading_content,int heading_size=1,string style=SHED)
 				{
-					CHECK;
 					if(heading_size>=1&&heading_size<=6)
 					{	
 						GOTOB;
@@ -31,26 +35,22 @@ class html{
 				}
 				void add_paragraph(string para,string style=SPAR)
 				{
-					CHECK;
 					GOTOB;
 					fout<<"<p style=\""<<style<<"\">"<<para<<"</p>"<<"\n</body>\n</html>";
 				}
 				void add_link(string linkurl,string linkname)
 				{
-					CHECK;
 					GOTOB;
 					fout<<"<a href=\""<<linkurl<<"\">"<<linkname<<"</a>"<<"\n</body>\n</html>";
 				}
 				void add_button(string button_name)
 				{
-					CHECK;
 					GOTOB;
 					fout<<"<button>"<<button_name<<"</button>"<<"\n</body>\n</html>";
 				}
 				template<size_t LEN>
 				void add_list(string (&list)[LEN],string type="ul")
 				{
-					CHECK;
 					if(type=="ul"||type=="ol")
 					{
 						GOTOB;
@@ -64,14 +64,12 @@ class html{
 				}
 				void add_image(string imageurl,string alt="user_image",int width=100,int height=100)
 				{
-					CHECK;
 					GOTOB;
 					fout<<"<img src=\""<<imageurl<<"\""<<" "<<"alt=\""<<alt<<"\""<<" "<<"width=\""<<width<<"\""<<" "<<"height=\""<<height<<"\">"<<"\n</body>\n</html>";
 				}
 				template<size_t ROW,size_t COL>
 				void add_table(string (&table)[ROW][COL],string style=STAB)
 				{
-					CHECK;
 					GOTOB;
 					fout<<"<table style=\""<<style<<"\">\n";
 					for(int i=0;i<ROW;i++)
