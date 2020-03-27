@@ -1,7 +1,7 @@
-# API REFERENCE:
+# API REFERENCE
 
 ## CLASS html
-      This is a writer for html documents.
+      This is a class for writing html documents.
 
 ### Constructors Summary
        html()
