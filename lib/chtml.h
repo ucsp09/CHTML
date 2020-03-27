@@ -1,9 +1,5 @@
 #include<fstream>
-#define OPEN fout.open(filename)
-#define INIT fout<<"<!DOCTYPE html>\n<html>\n<body>\n</body>\n</html>"
-#define SEEKP fout.seekp(-16,ios_base::end);
-#define CLOSE fout.close()
-#define CHECK if(!fout.is_open())throw "Please create a file first using create_file()"
+#include"def.h"
 using namespace std;
 class html{
 	private:	string filename;
@@ -19,36 +15,36 @@ class html{
 				void add_title(string title_content)
 				{	
 					CHECK;
-					SEEKP;
-					fout<<"<title>"<<title_content<<"</title>"<<"\n</body>\n</html>";
+					GOTOH;
+					fout<<"<title>"<<title_content<<"</title>"<<"\n</head>\n<body>\n</body>\n</html>";
 				}
-				void add_heading(string heading_content,int heading_size=1,string style="color:black;font:Arial;")
+				void add_heading(string heading_content,int heading_size=1,string style=SHED)
 				{
 					CHECK;
 					if(heading_size>=1&&heading_size<=6)
 					{	
-						SEEKP;
+						GOTOB;
 						fout<<"<h"<<heading_size<<" "<<"style=\""<<style<<"\">"<<heading_content<<"</h"<<heading_size<<">"<<"\n</body>\n</html>";
 					}
 					else
 						throw "Please choose heading tag size from one of{1,2,3,4,5,6}";
 				}
-				void add_paragraph(string para,string style="color:black;font:Arial;")
+				void add_paragraph(string para,string style=SPAR)
 				{
 					CHECK;
-					SEEKP;
+					GOTOB;
 					fout<<"<p style=\""<<style<<"\">"<<para<<"</p>"<<"\n</body>\n</html>";
 				}
 				void add_link(string linkurl,string linkname)
 				{
 					CHECK;
-					SEEKP;
+					GOTOB;
 					fout<<"<a href=\""<<linkurl<<"\">"<<linkname<<"</a>"<<"\n</body>\n</html>";
 				}
 				void add_button(string button_name)
 				{
 					CHECK;
-					SEEKP;
+					GOTOB;
 					fout<<"<button>"<<button_name<<"</button>"<<"\n</body>\n</html>";
 				}
 				template<size_t LEN>
@@ -57,7 +53,7 @@ class html{
 					CHECK;
 					if(type=="ul"||type=="ol")
 					{
-						SEEKP;
+						GOTOB;
 						fout<<"<"<<type<<">\n";
 						for(int i=0;i<LEN;i++)
 							fout<<"<li>"<<list[i]<<"</li>\n";
@@ -69,14 +65,14 @@ class html{
 				void add_image(string imageurl,string alt="user_image",int width=100,int height=100)
 				{
 					CHECK;
-					SEEKP;
+					GOTOB;
 					fout<<"<img src=\""<<imageurl<<"\""<<" "<<"alt=\""<<alt<<"\""<<" "<<"width=\""<<width<<"\""<<" "<<"height=\""<<height<<"\">"<<"\n</body>\n</html>";
 				}
 				template<size_t ROW,size_t COL>
-				void add_table(string (&table)[ROW][COL],string style="border:1px solid black;border-collapse:collapse;")
+				void add_table(string (&table)[ROW][COL],string style=STAB)
 				{
 					CHECK;
-					SEEKP;
+					GOTOB;
 					fout<<"<table style=\""<<style<<"\">\n";
 					for(int i=0;i<ROW;i++)
 					{
