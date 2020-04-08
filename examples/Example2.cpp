@@ -17,5 +17,6 @@ int main()
 	obj.close_tag("ul");
 	obj.close_tag("body");
 	obj.close_tag("html");
+	obj.dump();
 	return 0;
 }
