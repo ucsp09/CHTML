@@ -8,8 +8,10 @@
       Modifier and type               Function and Description
       public void                       dump()
                                            dumps the code written to sample.html
-      public void                        dump(string filename)
-                                            dumps the code writeen to specified filename.html 
+      public void                        dump(string fname)
+                                            dumps the code written to specified filename.html 
+      public void			edit(string fname)
+      					   enables editing of existing files
 ### Function Detail
 
    #### public void dump()
@@ -17,11 +19,16 @@
            dumps the code to sample.html by default.
        Parameters:
             No parameters.
-   #### public void dump(string filename)
+   #### public void dump(string fname)
        Description:
            dumps the code to filename.html.
        Parameters:
-           filename=string type
+           fname=give filename
+  #### public void edit(string fname)
+      Description:
+          enables the user to edit existing files.
+      Parameters:
+          fname=give filename
 
 ## CLASS xml:public base
        This is the xml class which inherits publicly the base class.It can be instantiated.
