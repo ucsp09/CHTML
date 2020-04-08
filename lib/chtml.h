@@ -209,9 +209,9 @@ class html:public xml{
 					if(selector_type=="tag")
 						temp=temp+"\n"+selector_name+"{\n"+att+"\n}";
 					else if(selector_type=="id")
-						temp=temp+"\n"+"."+selector_name+"{\n"+att+"\n}";
-					else if(selector_type=="class")
 						temp=temp+"\n"+"#"+selector_name+"{\n"+att+"\n}";
+					else if(selector_type=="class")
+						temp=temp+"\n"+"."+selector_name+"{\n"+att+"\n}";
 					else
 						throw "Selector type should be tag or id or class";
 					data.insert(found+7,temp);
