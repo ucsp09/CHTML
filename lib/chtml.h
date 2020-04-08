@@ -23,6 +23,21 @@ class base{
 					APP;
 				DUMP;
 			}
+		void edit(string fname)
+			{
+				filename=fname+".html";
+				ifstream fin(filename);
+				string temp;	
+				if(fin.is_open())
+				{
+					while(getline(fin,temp))
+						data=data+temp;
+					fin.close();
+				}
+				else
+					throw "File does not exist";
+				init=1;	
+			}
 };
 class xml:public base{
 	public:			void open_tag(string tag)
