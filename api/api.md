@@ -24,7 +24,7 @@
            filename=string type
 
 ## CLASS xml:public base
-       This is the xml class which inherits publicly the base class.It can be instatntiated.
+       This is the xml class which inherits publicly the base class.It can be instantiated.
        
 ### Member Functions Summary
  
@@ -118,7 +118,7 @@
             if the tag does nto exist it automatically creates a tag and sets attribute for it.   
             
 ## CLASS html:public xml
-      This is a class which inherits the xml class publicly and can be instatntiated.
+      This is a class which inherits the xml class publicly and can be instantiated.
 
 ### Constructors Summary
        html()
