@@ -5,27 +5,27 @@
 using namespace std;
 class base{
 	protected:	ofstream fout;
-				string filename;
-				string data;
-				long pos;
-				int init;
+			string filename;
+			string data;
+			long pos;
+			int init;
 	public:		void dump()
-				{
-					filename="sample.html";
-					if(init==2)
-						APP;
-					DUMP;	
-				}
-				void dump(string fname)
-				{
-					filename=fname+".html";
-					if(init==2)
-						APP;
-					DUMP;
-				}
+			{
+				filename="sample.html";
+				if(init==2)
+					APP;
+				DUMP;	
+			}
+			void dump(string fname)
+			{
+				filename=fname+".html";
+				if(init==2)
+					APP;
+				DUMP;
+			}
 };
 class xml:public base{
-	public:		void open_tag(string tag)
+	public:			void open_tag(string tag)
 				{
 					data=data+"<"+tag+">";	
 				}
@@ -110,7 +110,7 @@ class xml:public base{
 				}
 }; 
 class html:public xml{
-	public:		html()
+	public:			html()
 				{
 					init=2;
 					data=data+"<DOCTYPE html>\n<html>\n<head>\n<style>\n</style>\n</head>\n<body>";
