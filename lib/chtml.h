@@ -5,42 +5,49 @@
 using namespace std;
 class base{
 	protected:	ofstream fout;
-			string filename;
-			string data;
-			long pos;
-			int init;
+				string filename;
+				string extension;
+				string data;
+				long pos;
+				int init;
 	public:		void dump()
-			{
-				filename="sample.html";
-				if(init==2)
-					APP;
-				DUMP;	
-			}
-			void dump(string fname)
-			{
-				filename=fname+".html";
-				if(init==2)
-					APP;
-				DUMP;
-			}
-			void edit(string fname)
-			{
-				filename=fname+".html";
-				ifstream fin(filename);
-				string temp;	
-				if(fin.is_open())
 				{
-					while(getline(fin,temp))
-						data=data+temp;
-					fin.close();
+					if(init!=1)
+					{
+						extension="txt";
+						filename="sample."+extension;
+					}
+					if(init==2)
+						APP;
+					DUMP;	
 				}
-				else
-					throw "File does not exist";
-				init=1;	
-			}
+				void dump(string fname,string ext="html")
+				{
+					extension=ext;
+					filename=fname+"."+extension;
+					if(init==2)
+						APP;
+					DUMP;
+				}
+				void edit(string fname,string ext="html")
+				{
+					extension=ext;
+					filename=fname+"."+extension;
+					ifstream fin(filename);
+					string temp;	
+					if(fin.is_open())
+					{
+						while(getline(fin,temp))
+							data=data+temp;
+						fin.close();
+					}
+					else
+						throw "File does not exist";
+					init=1;	
+				}
 };
 class xml:public base{
-	public:			void open_tag(string tag)
+	public:		void open_tag(string tag)
 				{
 					data=data+"<"+tag+">";	
 				}
@@ -125,7 +132,7 @@ class xml:public base{
 				}
 }; 
 class html:public xml{
-	public:			html()
+	public:		html()
 				{
 					init=2;
 					data=data+"<DOCTYPE html>\n<html>\n<head>\n<style>\n</style>\n</head>\n<body>";
@@ -205,16 +212,46 @@ class html:public xml{
 				void add_style(string selector_type,string selector_name,string att)
 				{
 					size_t found=data.find("<style>");
-					string temp;
+					string temp,_temp;
+					size_t _found;
 					if(selector_type=="tag")
-						temp=temp+"\n"+selector_name+"{\n"+att+"\n}";
+					{
+						_temp=selector_name+"{";
+						_found=data.find(_temp);
+						if(_found==string::npos)
+						{
+							temp=temp+"\n"+selector_name+"{\n"+att+"\n}";
+							data.insert(found+7,temp);
+						}
+						else
+							data.insert(found+selector_name.length()+2,att);
+					}
 					else if(selector_type=="id")
-						temp=temp+"\n"+"#"+selector_name+"{\n"+att+"\n}";
+					{
+						_temp="#"+selector_name+"{";
+						_found=data.find(_temp);
+						if(_found==string::npos)
+						{
+							temp=temp+"\n"+"#"+selector_name+"{\n"+att+"\n}";
+							data.insert(found+7,temp);
+						}
+						else
+							data.insert(found+selector_name.length()+2,att);
+					}
 					else if(selector_type=="class")
-						temp=temp+"\n"+"."+selector_name+"{\n"+att+"\n}";
+					{
+						_temp="."+selector_name+"{";
+						_found=data.find(_temp);
+						if(_found==string::npos)
+						{
+							temp=temp+"\n"+"."+selector_name+"{\n"+att+"\n}";
+							data.insert(found+7,temp);
+						}
+						else
+							data.insert(found+selector_name.length()+2,att);
+					}
 					else
 						throw "Selector type should be tag or id or class";
-					data.insert(found+7,temp);
 				}
 				void add_stylesheet(string url)
 				{
