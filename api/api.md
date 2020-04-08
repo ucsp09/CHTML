@@ -1,135 +1,243 @@
 # API REFERENCE
 
-## CLASS html
-      This is a class for writing html documents.
+## CLASS base
+      This is the base class which cannot be instantiated.
+      
+### Member Functions Summary
+      
+      Modifier and type               Function and Description
+      public void                       dump()
+                                           dumps the code written to sample.html
+      public void                        dump(string filename)
+                                            dumps the code writeen to specified filename.html 
+### Function Detail
+
+   #### public void dump()
+       Description:
+           dumps the code to sample.html by default.
+       Parameters:
+            No parameters.
+   #### public void dump(string filename)
+       Description:
+           dumps the code to filename.html.
+       Parameters:
+           filename=string type
+
+## CLASS xml:public base
+       This is the xml class which inherits publicly the base class.It can be instatntiated.
+       
+### Member Functions Summary
+ 
+       Modifier and type               Function and Description
+       public void                        open_tag(string tag)
+                                                opens a tag
+	 public void	      	      openln_tag(string tag)
+                                                opens a tag in a new line
+	 public void			      open_tag(string tag,string att,string val)
+                                                opens a tag with given attribute and value
+	 public void				insert_text(string text)
+                                                inserts a text
+	 public void				close_tag(string tag)
+                                                closes a tag
+	 public void			      closeln_tag(string tag)
+                                                closes a tag in a newline
+	 public void				write_tag(string tag,string text)
+                                                opens a tag inserts text and close the tag
+	 public void			      writeln_tag(string tag,string text)
+                                                opens a tag in a newline inserts text and closes the tag
+	 public void			      set_attribute(string tag,unordered_map<string,string> att,int occurence=-1)
+                                                adds given attributes to specified tag inline
+	 public void			      set_attribute(string tag,string att,string val,int occurence=-1)
+                                                adds given attribute and value to specified tag inline
+### Function Detail
+
+   #### public void open_tag(string tag)
+         Description:
+            opens a tag
+         Parameters:
+            tag=give tagname
+   #### public void openln_tag(string tag)
+         Description:
+            opens a tag new line
+         Parameters:
+            tag=give tagname
+   #### public void open_tag(string tag,string att,string val)
+         Description:   
+            opens a tag with given attribute and value
+         Parameters:
+            tag=give tagname
+            att=give attribute name
+            val=give atrribute's value name
+   #### public void insert_text(string text)
+         Description:
+             inserts a text
+         Parameters:
+             text=give text data
+   #### public void close_tag(string tag)
+         Description:
+            closes the tag
+         Parameters:
+            tag=give tagname
+   #### public void closeln_tag(string tag)
+         Desciption:
+            closes the tag in a newline
+         Parameters:
+            tag=give tagname
+   #### public void write_tag(string tag,string text)
+        Description:
+            opens a tag inserts text and closes that tag.
+         Parameters:
+            tag=give tagname
+            text=give text data
+  #### public void writeln_tag(string tag,string text)
+       Description:
+           opens a tag inserts text closes a tag in a newline
+       Parameters:
+           tag=give tagname
+           text=give text data
+ #### public void set_attribute(string tag,unordered_map<string,string> att,int occurence=-1)
+       Description:   
+          adds given attributes to specified tag inline
+       Parameters:
+          tag=give tagname
+          att=give attributes and values in the form of unordered_map
+          occurence=give occurence number n to set attribute to nth tag default is -1 which means last.
+       Exceptions:
+            throws exceptions if given 0
+            if the tag does nto exist it automatically creates a tag and sets attribute for it.
+ #### public void set_attribute(string tag,string att,string val,int occurence=-1)
+       Description:      
+           adds given attribute and value to specified tag inline
+       Parameters:
+          tag=give tagname
+          att=give attribute name
+          val=give attribute's value name
+          occurence=give occurence number n to set attribute to nth tag default is -1 which means last.
+       Exceptions:
+            throws exceptions if given 0
+            if the tag does nto exist it automatically creates a tag and sets attribute for it.   
+            
+## CLASS html:public xml
+      This is a class which inherits the xml class publicly and can be instatntiated.
 
 ### Constructors Summary
        html()
-            Creates a new file named sample.html with some default tags written. 
-      html(string user_filename)
-            Creates a new file with the given name with some default tags written.
+            Creates a new object with some default html structure loaded.
 
 ### Member Functions Summary
 
       Modifier and type                Function and Description
-      public  void                    add_title(string title_content)
-                                           adds a <title> tag with given content.
-      public  void                    add_heading(string heading_content,int heading_size=1,string style=SHED)
-                                          adds a <h1> tag with some default styling unless specified.
-      public  void                    add_paragraph(string para,string style=SPAR)
-                                          adds a <p> tag with some default styling unless specified.
-      public  void                    add_link(string linkurl,string linkname)
-                                          adds a <a> tag with url and linkname.
-      public  void                    add_button(string button_name)
-                                          adds a <button> tag with given name.
-      public  void                    add_list(string (&list)[LEN],string type="ul")
-                                          adds a <ul> tag with <li> tags by default unless specified.
-      public  void                    add_image(string imageurl,string alt="user_image",int width=100,int height=100)
-                                          adds an <img> tag with some default attributes unless specified.
-      public  void                    add_table(string (&table)[ROW][COL],string style=STAB)
-                                          adds a <table> tag along with <th>,<td>,<tr> tag.
-
+      public void                         add_title(string text)
+                                                adds title tag with given text        
+	public void                         add_header(string text,int size=1)
+                                                adds header tag h1-h6 with specified text
+	public void                         add_header(string text,string att,string val,int size=1)
+                                                adds header tag with specified text and specified attributes inline 
+	public void                         add_para(string text)
+                                                adds p tag with specified text
+	public void                         add_para(string text,string att,string val)
+                                                adds p tag with specified text and specified attributes inline
+	public void                         add_button(string bname)
+                                                adds button tag with given name
+	public void                         add_link(string url,string lname)
+                                                adds a link i.e 'a' tag
+	public void                         add_image(string src)
+                                                adds an img tag
+	                                    template<size_t LEN>
+	public void                         add_list(string (&list)[LEN],string type="ul")
+                                                adds a ul or ol list
+	                                    template<size_t ROW,size_t COL>
+	public void                         add_table(string (&table)[ROW][COL])
+                                                adds a table
+	public void                         add_style(string selector_type,string selector_name,string att)
+                                                adds attributes to the style tag i.e; embedded style
+      public void                         add_stylesheet(string url)
+                                                adds an external stylesheet
+                   
 ### Constructor Detail
 
    #### html()
       Description: 
-        Creates a new file named sample.html with some tags already written it.
+        Creates a new object with some tags already written it when dumped.
       Parameters:
         Takes no parameters.    
-   #### html(string user_filename)
-      Description:
-        Creates a new file with given name with some tags already written in it.
-      Parameters:
-        user_filename=string type
-
 ### Function Detail
 
-   #### public void add_title(string title_content)
-      Description:
-        Adds a title tag as shown <title>title_content</title>
-      Parameters:
-        title_content=string type
-   #### public void add_heading(string heading_content,int heading_size=1,string style=SHED)
-      Description:
-        Adds a header tag as shown <h1 style="SHED">heading_content</h1>
-      Parameters:
-        heading_content=string type
-        heading_size=int type takes value from 1 to 6
-        style=string type should be of the form "color:blue;font:Arial;"
-      Exceptions:
-        if heading_size not between 1 to 6 throws an exception
-   #### public void add_paragraph(string para,string style=SPAR)
-      Description:
-        Adds a paragraph tag as shown <p style="SPAR">para</p>
-      Parameters:
-        para=string type
-        style=string type should be of the form "color:black;font:Arial;"
-   #### public void add_link(string linkurl,string linkname)
-      Description:
-        Adds a link tag as shown <a href="linkurl">linkname</a>
-      Parameters:
-        linkurl=string type
-        linkname=string type
-   #### public void add_button(string button_name)
-      Description:
-        Adds a button tag as shown <button>button_name</button>
-      Parameters:
-        button_name=string type
-   #### public void add_list(string(&list)[LEN],string type="ul")
-      Description:
-        Adds a list tag as shown    <ul>
-                                    <li>list[0]</li>
-                                    <li>list[1]</li>
-                                    .
-                                    .
-                                    .
-                                    .
-                                    <li>list[LEN-1]</li>
-                                    </ul>
-      Parmeters:
-        list[]=string array
-        type=string type takes  value either "ul" or "ol" 
-      Exception:
-        throws an exception if type value is not "ol" or "ul"
-   #### public void add_image(string imageurl,string alt="user_image",int width=100,int height=100)
-      Decription:
-        Adds an image tag as shown <img src="imageurl" alt="user_image" width="100" height="100">
-      Parameters:
-        imageurl=string type
-        alt=string type displays this name if image cant be displayed
-        width=int type
-        height=int type
-   #### public void add_table(string (&table)[ROW][COL],string style=STAB)
-      Description:
-        Adds table tag as shown   <table style="STAB">
-                                  <tr>
-                                  <th style="STAB">table[0][0]</th>
-                                  <th style="STAB">table[0][1]</th>
-                                  <th style="STAB">table[0][2]</th>
-                                  .
-                                  .
-                                  .
-                                  </tr>
-                                  <tr>
-                                  <td style="STAB">table[1][0]</td>
-                                  <td style="STAB">table[1][1]</td>
-                                  <td style="STAB">table[1][2]</td>
-                                  .
-                                  .
-                                  .
-                                  </tr>
-                                  <tr>
-                                  <td style="STAB">table[2][0]</td>
-                                  <td style="STAB">table[2][1]</td>
-                                  <td style="STAB">table[2][2]</td>
-                                  .
-                                  .
-                                  .
-                                  </tr>
-                                  .
-                                  .
-                                  .
-                                  </table>
+   #### public void add_title(string text)
+       Description:     
+         adds title tag with given text
        Parameters:
-         table[][]=2d string array
-         style=string type should be of the form "color:blue;font:Arial;"
+         text=give title content
+   #### public void add_header(string text,int size=1)
+       Description:
+         adds header tag h1-h6 with specified text
+       Parameters:
+         text=give header content
+         size=give value inclusive(1,6)
+       Exception:
+         throws an exception if size is less than 1 or greater than 6   
+   #### public void add_header(string text,string att,string val,int size=1)
+       Description:
+          adds header tag with specified text and specified attributes inline
+       Parameters:
+          text=give header content
+          att=give attribute name
+          val=give attribute val
+          size=give value inclusive(1,6)
+       Exception:
+         throws an exception if size is less than 1 or greater than 6   
+   #### public void add_para(string text)
+       Description:
+         adds p tag with specified text
+       Parameters:
+         text=give paragraph content  
+   #### public void add_para(string text,string att,string val)
+       Description:
+         adds p tag with specified text and specified attributes inline
+       Parameters:
+          text=give paragraph content
+          att=give attribute name
+          val=give attribute val
+   #### public void add_button(string bname)
+       Description:
+         adds button tag with given name
+       Parameters:
+          bname=give button name
+   #### public void add_link(string url,string lname)
+       Description:
+          adds a link i.e 'a' tag
+       Parameters:
+         url=give url
+         lname=give link name to be displayed
+   #### public void add_image(string src)
+       Description:
+         adds an img tag
+       Parameters:
+         src=give url of image
+   #### template<size_t LEN> public void add_list(string (&list)[LEN],string type="ul")
+       Description:
+          adds a ul or ol list
+       Parameters:
+          string(&list)[LEN] =give a list of strings
+          type=give list type either ul or ol
+       Exception:
+            throws an exception if type is not ol or ul
+   #### template<size_t ROW,size_t COL> public void add_table(string (&table)[ROW][COL])
+       Description:
+          adds a table
+       Parameters:
+          string(&table)[ROW][COL]=give a 2d array of strings  
+   #### public void add_style(string selector_type,string selector_name,string att)
+       Description:
+           adds attributes to the style tag i.e; embedded style
+       Parameters:
+           selector_type=give either tag or id or class
+           selector_name=give the selector name
+           att=give style attributes as a string
+      Exception:
+           thrws an exception if selector is not tag or id or class       
+   #### public void add_stylesheet(string url)
+       Description:
+           adds an external stylesheet
+       Parameters:
+           url=give url of stylesheet
