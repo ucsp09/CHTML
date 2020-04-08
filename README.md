@@ -20,5 +20,5 @@
               return 0;
               }
        5.Now see the list of availbale functions in api.md in api folder.Start using them.   
-       6.dump() function anyone of the two is necessary to dump the code to the html file otherwise the file will not be                  created.
+       6.dump() function anyone of the two is necessary to dump the code to the html file otherwise the file will not be created.
        7.View test files in test folder and example folder for further clarity.
