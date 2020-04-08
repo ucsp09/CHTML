@@ -20,6 +20,7 @@
                      obj.add_title("WELCOME");
                      string cars[]={"Ferrari","BMW","Lamborgini"};
                      obj.add_list(cars,"ul");
+                     obj.dump();
                      }
                      catch(const char* msg){
                      cout<<msg<<endl;
@@ -28,5 +29,5 @@
                      return 0;
               }
        5.View the test.cpp file in test folder for further clarity.   
-       6.A html file will be automatically created in your folder.Open it with any web browser.
+       6.Use dump(filename) to dump the code to a html file.Open it with any web browser.
        7.For list of functions available view the api.md in api folder.
