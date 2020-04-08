@@ -23,7 +23,7 @@ class base{
 					APP;
 				DUMP;
 			}
-		void edit(string fname)
+			void edit(string fname)
 			{
 				filename=fname+".html";
 				ifstream fin(filename);
