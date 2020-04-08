@@ -18,5 +18,6 @@ int main()
 	obj.openln_tag("div");
 	obj.insert_text("this is a form");
 	obj.closeln_tag("div");
+	obj.dump("sample");
 	return 0;
 }
