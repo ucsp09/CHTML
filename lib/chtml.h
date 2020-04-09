@@ -10,40 +10,13 @@ class base{
 				string data;
 				long pos;
 				int init;
-	public:		void dump()
-				{
-					if(init!=1)
-					{
-						extension="txt";
-						filename="sample."+extension;
-					}
-					if(init==2)
-						APP;
-					DUMP;	
-				}
-				void dump(string fname,string ext="html")
+	public:		void dump(string fname,string ext="html")
 				{
 					extension=ext;
 					filename=fname+"."+extension;
 					if(init==2)
 						APP;
 					DUMP;
-				}
-				void edit(string fname,string ext="html")
-				{
-					extension=ext;
-					filename=fname+"."+extension;
-					ifstream fin(filename);
-					string temp;	
-					if(fin.is_open())
-					{
-						while(getline(fin,temp))
-							data=data+temp;
-						fin.close();
-					}
-					else
-						throw "File does not exist";
-					init=1;	
 				}
 };
 class xml:public base{
@@ -78,6 +51,50 @@ class xml:public base{
 				void writeln_tag(string tag,string text)
 				{
 					data=data+"\n<"+tag+">"+text+"</"+tag+">";
+				}
+				void remove_tag(string tag,string upto="close",int occurence=1)
+				{
+					string _tag="<"+tag;
+					size_t found;
+					if(occurence==1)
+						found=data.find(_tag);
+					else if(occurence==-1)
+						found=data.rfind(_tag);
+					else
+					{
+						found=data.find(_tag);
+						int count=1;
+						while(count!=occurence)
+						{
+							found=data.find(_tag,found+_tag.length()+1);
+							count++;
+						}
+					}
+					if(found==string::npos)
+						throw "This tag is already removed or not present";
+					else
+					{
+						if(upto=="open")
+						{
+							size_t end=data.find(">",found+1);
+							data.erase(found,end-found+1);
+						}
+						else if(upto=="text")
+						{
+							size_t end=data.find("<",found+1);
+							data.erase(found,end-found);
+						}
+						else if(upto=="close")
+						{
+							
+							string tag_="</"+tag+">";
+							size_t end=data.find(tag_,found+1);
+							end=end+_tag.length();
+							data.erase(found,end-found+2);
+						}
+						else
+							throw "upto takes value- open or text or close";
+					}
 				}
 				void set_attribute(string tag,unordered_map<string,string> att,int occurence=-1)
 				{
