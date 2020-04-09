@@ -1,8 +1,10 @@
+/*Creation of html file with inline styling using html class*/
 #include<iostream>
 #include"chtml.h"
 using namespace std;
 int main()
 {
+	try{
 	html obj;
 	obj.add_header("Hello world","style","font:Arial;color:red;",3);
 	obj.add_title("Welcome");
@@ -26,6 +28,10 @@ int main()
 	obj.set_attribute("div","style","color:red;",1);
 	obj.set_attribute("div","style","color:blue;",2);
 	obj.set_attribute("div","style","color:green;",3);
-	obj.dump();
+	obj.dump("sample");
+	}
+	catch(const char *msg){
+		cout<<msg;
+	}
 	return 0;
 }
