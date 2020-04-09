@@ -3,6 +3,7 @@
 using namespace std;
 int main()
 {
+	try{
 	xml obj;
 	obj.openln_tag("html");
 	obj.openln_tag("head");
@@ -17,6 +18,10 @@ int main()
 	obj.close_tag("ul");
 	obj.close_tag("body");
 	obj.close_tag("html");
-	obj.dump();
+	obj.dump("sample");
+	}
+	catch(const char *msg){
+		cout<<msg;
+	}
 	return 0;
 }
