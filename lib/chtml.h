@@ -241,7 +241,7 @@ class html:public xml{
 							data.insert(found+7,temp);
 						}
 						else
-							data.insert(found+selector_name.length()+2,att);
+							data.insert(_found+selector_name.length()+2,att);
 					}
 					else if(selector_type=="id")
 					{
@@ -253,7 +253,7 @@ class html:public xml{
 							data.insert(found+7,temp);
 						}
 						else
-							data.insert(found+selector_name.length()+2,att);
+							data.insert(_found+selector_name.length()+2,att);
 					}
 					else if(selector_type=="class")
 					{
@@ -265,7 +265,7 @@ class html:public xml{
 							data.insert(found+7,temp);
 						}
 						else
-							data.insert(found+selector_name.length()+2,att);
+							data.insert(_found+selector_name.length()+2,att);
 					}
 					else
 						throw "Selector type should be tag or id or class";
