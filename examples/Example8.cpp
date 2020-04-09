@@ -1,4 +1,4 @@
-/*Creation of a html file with external stylesheet using html class*/
+/*Creation of html file with external stylesheet using html class*/
 #include<iostream>
 #include"chtml.h"
 using namespace std;
