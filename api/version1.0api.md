@@ -9,12 +9,12 @@
       public void                        dump(string fname,string ext)
                                             dumps the code written to specified filename.ext 
 ### Function Detail
-   #### public void dump(string fname,string ext)
+   #### public void dump(string fname,string ext="html")
        Description:
            dumps the code to filename.ext
        Parameters:
            fname=give filename
-	   ext=give extension without dot
+	   ext=give extension without dot default is html
 ## CLASS xml:public base
        This is the xml class which inherits publicly the base class.It can be instantiated.
        
