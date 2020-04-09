@@ -1,3 +1,4 @@
+/*Creation of Plain html file using xml class*/
 #include<iostream>
 #include"chtml.h"
 using namespace std;
