@@ -34,8 +34,9 @@
  
 # Future Versions
    Future Versions will include
-   1.writing tags at a specific postion in document
-   2.replacing an old tag with a new tag
-   3.feature to edit pre-existing html documents
-   4.class to write css dcuments
+      
+      1.writing tags at a specific postion in document
+      2.replacing an old tag with a new tag
+      3.feature to edit pre-existing html documents
+      4.class to write css dcuments
    
