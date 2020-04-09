@@ -1,8 +1,10 @@
+/*Creation of a html file with external stylesheet using xml class*/
 #include<iostream>
 #include"chtml.h"
 using namespace std;
 int main()
 {
+	try{
 	xml obj;
 	obj.open_tag("html");
 	obj.openln_tag("head");
@@ -17,6 +19,10 @@ int main()
 	obj.close_tag("h1");
 	obj.close_tag("body");
 	obj.close_tag("html");
-	obj.dump();
+	obj.dump("sample");
+	}
+	catch(const char *msg){
+		cout<<msg;
+	}
 	return 0;
 }
