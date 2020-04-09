@@ -1,8 +1,10 @@
+/*Creation of a Plain html file using html class*/
 #include<iostream>
 #include"chtml.h"
 using namespace std;
 int main()
 {
+	try{
 	html obj;
 	obj.add_title("Welcome");
 	obj.add_header("Hello World",2);
@@ -19,5 +21,9 @@ int main()
 	obj.insert_text("this is a form");
 	obj.closeln_tag("div");
 	obj.dump("sample");
+	}
+	catch(const char *msg){
+		cout<<msg;
+	}
 	return 0;
 }
