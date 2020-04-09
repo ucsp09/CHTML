@@ -1,24 +1,30 @@
 # CHTML
-   A library built using c++ for writing and editing static html pages and css pages.
-# Description:
-   The Aim is to utilize the String handling features available in C++ to create a library named chtml.h which has some classes written in it.Users can create objects of these classes and by simply invoking functions can create html files,css files such as adding headers,paragraphs,links,tables,lists,images,butons and manymore.They can also include styling in their html documents.So, now users can simply create html files,css files using C++ without actually writing them in editors as they traditionally did.Also they can edit already existing html files and css files.
-# Classes Available:
-   There are two classes available to the users one is named xml which contains functions to only open tags,close tags,insert text,set attributes.Other one is named html which contains many more functions.Users who dont know html tag structure can use class html,whereas people who know the html tag structure can use both xml and html class.
-# Contributions:
-   If anyone is interested in contribution to this library they can simply fork the repository ,add some features and generate a pull request.
-# Steps to Run:
-       1.Create a folder in your pc.
-       2.Copy the header file chtml.h(present in lib folder) to your folder.
-       3.Create a .cpp file in the same folder with any name.
-       4.Now include chtml.h in this .cpp file as shown below
-  
-              #include<iostream>
-              #include"chtml.h"
-              using namespace std;
-              int main()
-              {
-              return 0;
-              }
-       5.Now see the list of availbale functions in api.md in api folder.Start using them.   
-       6.dump() function is necessary to dump the code to the html file/css file otherwise the changes made will not appear in the file.
-       7.View test files in test folder and examples in example folder for further clarity.
+   CHTML is a library built using c++ for writing html documents.It has no dependencies on other projects,only on the C++ standard library.
+# Building
+   For use in a project you can copy the chtml.h file present in lib folder.
+# Usage
+   The basis of this library is the xml class and the html class.
+   The xml class has functions to create the tag struture.(Refer file version1.0api.md in api folder)
+               
+            xml obj;
+            obj.open_tag("p");//opens a p tag
+            obj.insert_text("Hello");//writes text 
+            obj.close_tag("p");//closes the p tag
+            obj.set_attribute("p","style","font:Arial;color:red;");//adds inline style to the p tag
+            obj.dump("somefile","html");//dumps the code to the file
+   The html class inherits xml class and also has advanced functions such as to add lists,links..etc(Refer file version1.0api.md in api folder)
+   
+         html obj;
+         obj.add_header("Hello world",3)//creates a h3 tag with hello world as the text in it
+         obj.add_title("Welcome")//creates a title tag with Welcome as the text in it
+         obj.add_link("#abcd","Click me")//creates a link with given name
+         obj.add_stylesheet("somefile.css");//adds an external stylesheet
+         string fruits[]={"apple","mango","grapes","banana"};
+         obj.add_list(fruits,"ol")//creates an ordered list of fruits.
+         obj.dump("sample","html");
+ # API
+   Refer file version1.0api.md present in api folder for list api reference
+              
+# Examples
+   A number of examples are included in the examples folder to get you started.
+    
