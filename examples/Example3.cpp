@@ -1,8 +1,10 @@
+/*Creation of html file with inline styling using xml class */
 #include<iostream>
 #include"chtml.h"
 using namespace std;
 int main()
 {
+	try{
 	xml obj;
 	obj.openln_tag("html");
 	obj.openln_tag("head");
@@ -23,6 +25,10 @@ int main()
 	obj.set_attribute("h1","style","color:green;",2);
 	obj.close_tag("body");
 	obj.close_tag("html");
-	obj.dump();
+	obj.dump("sample","html");
+	}
+	catch(const char *msg){
+		cout<<msg;
+	}
 	return 0;
 }
